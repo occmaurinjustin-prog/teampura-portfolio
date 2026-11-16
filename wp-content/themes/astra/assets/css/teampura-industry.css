@@ -834,11 +834,13 @@ a.elementor-button:hover {
 }
 
 /* ==========================================================================
-   4-COLUMN GRIDS: TEAM MEMBERS, SERVICES, STATS, SWITCHER
+   4-COLUMN GRIDS: TEAM MEMBERS, SERVICES, STATS, EDUCATION, HOBBIES, SWITCHER
    ========================================================================== */
 #team-grid-row,
 #services-grid-row,
-#stats-grid-row {
+#stats-grid-row,
+#member-education-grid,
+#member-hobbies-grid {
     width: 100% !important;
     max-width: 1200px !important;
     margin: 22px auto 0 !important;
@@ -847,6 +849,8 @@ a.elementor-button:hover {
 #team-grid-row > .e-con-inner,
 #services-grid-row > .e-con-inner,
 #stats-grid-row > .e-con-inner,
+#member-education-grid > .e-con-inner,
+#member-hobbies-grid > .e-con-inner,
 #member-switcher-row > .e-con-inner {
     display: grid !important;
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
@@ -860,6 +864,8 @@ a.elementor-button:hover {
 #team-grid-row > .e-con-inner > .e-con,
 #services-grid-row > .e-con-inner > .e-con,
 #stats-grid-row > .e-con-inner > .e-con,
+#member-education-grid > .e-con-inner > .e-con,
+#member-hobbies-grid > .e-con-inner > .e-con,
 #member-switcher-row > .e-con-inner > .e-con {
     width: 100% !important;
     max-width: 100% !important;
@@ -943,9 +949,11 @@ a.elementor-button:hover {
     font-size: 14px !important;
 }
 
-/* Service Cards & Stats Cards */
+/* Service Cards, Education Cards, Hobbies Cards & Stats Cards */
 #services-grid-row > .e-con-inner > .e-con,
-#stats-grid-row > .e-con-inner > .e-con {
+#stats-grid-row > .e-con-inner > .e-con,
+#member-education-grid > .e-con-inner > .e-con,
+#member-hobbies-grid > .e-con-inner > .e-con {
     background: var(--tp-grey) !important;
     border: 1px solid var(--tp-border) !important;
     border-radius: 16px !important;
@@ -954,10 +962,36 @@ a.elementor-button:hover {
 }
 
 #services-grid-row > .e-con-inner > .e-con,
-#member-services-grid > .e-con-inner > .e-con {
+#member-services-grid > .e-con-inner > .e-con,
+#member-education-grid > .e-con-inner > .e-con,
+#member-hobbies-grid > .e-con-inner > .e-con {
     border-top: 4px solid var(--tp-blue) !important;
     background: var(--tp-white) !important;
     box-shadow: 0 6px 22px rgba(15, 23, 42, 0.04) !important;
+}
+
+#member-education-grid > .e-con-inner > .e-con,
+#member-hobbies-grid > .e-con-inner > .e-con {
+    padding: 22px 18px !important;
+}
+
+#member-education-grid .elementor-widget-image {
+    margin-bottom: 10px !important;
+}
+
+#member-education-grid .elementor-widget-image img {
+    width: 100% !important;
+    height: 155px !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    border: 2px solid var(--tp-border) !important;
+    margin-bottom: 10px !important;
+    display: block !important;
+    transition: transform 0.3s ease !important;
+}
+
+#member-education-grid > .e-con-inner > .e-con:hover .elementor-widget-image img {
+    transform: scale(1.03);
 }
 
 #stats-grid-row > .e-con-inner > .e-con {
@@ -966,6 +1000,8 @@ a.elementor-button:hover {
 
 #services-grid-row > .e-con-inner > .e-con:hover,
 #member-services-grid > .e-con-inner > .e-con:hover,
+#member-education-grid > .e-con-inner > .e-con:hover,
+#member-hobbies-grid > .e-con-inner > .e-con:hover,
 #stats-grid-row > .e-con-inner > .e-con:hover {
     transform: translateY(-6px) !important;
     background: var(--tp-white) !important;
@@ -1594,6 +1630,8 @@ details.tp-accordion p {
     #member-projects-grid > .e-con-inner,
     #member-deliverables-grid > .e-con-inner,
     #member-certs-grid > .e-con-inner,
+    #member-education-grid > .e-con-inner,
+    #member-hobbies-grid > .e-con-inner,
     #member-switcher-row > .e-con-inner {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
@@ -1623,6 +1661,8 @@ details.tp-accordion p {
     #member-projects-grid > .e-con-inner,
     #member-deliverables-grid > .e-con-inner,
     #member-certs-grid > .e-con-inner,
+    #member-education-grid > .e-con-inner,
+    #member-hobbies-grid > .e-con-inner,
     #member-switcher-row > .e-con-inner {
         grid-template-columns: 1fr !important;
     }
@@ -1664,6 +1704,8 @@ details.tp-accordion p {
     #member-hero-section,
     #member-services,
     #member-about,
+    #member-education,
+    #member-hobbies,
     #member-skills,
     #member-projects,
     #member-deliverables,
