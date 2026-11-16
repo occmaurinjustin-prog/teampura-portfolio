@@ -185,7 +185,20 @@ add_action('wp_footer', function () {
             });
         }
 
-        // 2. Clean Scroll-Spy for Active Nav Link
+        // 2. Sticky Pill Header Scroll Shrinking Animation
+        function handleHeaderScroll() {
+            const masthead = document.getElementById('masthead');
+            if (!masthead) return;
+            if (window.scrollY > 25) {
+                masthead.classList.add('tp-header-scrolled');
+            } else {
+                masthead.classList.remove('tp-header-scrolled');
+            }
+        }
+        window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+        handleHeaderScroll();
+
+        // 3. Clean Scroll-Spy for Active Nav Link
         function updateActiveNav() {
             const navLinks = document.querySelectorAll('#masthead .main-header-menu > li.menu-item > a.menu-link');
             const sections = [];
@@ -227,27 +240,144 @@ add_action('wp_footer', function () {
         document.addEventListener('DOMContentLoaded', updateActiveNav);
         updateActiveNav();
 
-        // 3. Scroll-Reveal & Animated Counters
+        // 4. Typewriter Effect for Profession & Animated Intro
+        function initTypewriter() {
+            const headline = document.querySelector('.tp-hero-headline');
+            if (!headline) return;
+
+            const professionMap = {
+                'justin-maurin': [
+                    'Lead Full-Stack Programmer',
+                    'Laravel & React Engineer',
+                    'DTS Fleet Platform Architect',
+                    'BSIT Capstone Developer'
+                ],
+                'mike-iris-ebojo': [
+                    'Agile Project Manager',
+                    'Scrum Master & Coordinator',
+                    'Dennis Trucking Ops Lead',
+                    'BSIT Capstone Lead'
+                ],
+                'christian-angelo-enerio': [
+                    'Lead System Analyst',
+                    'ERD & Database Designer',
+                    'UI/UX & Workflow Architect',
+                    'BSIT Process Engineer'
+                ],
+                'rhea-mae-marandang': [
+                    'Lead Technical Writer',
+                    'System Documentation Specialist',
+                    'SRS & User Manual Author',
+                    'BSIT Quality Assurance Lead'
+                ]
+            };
+
+            const defaultRoles = [
+                'Full-Stack BSIT Innovators',
+                'Dennis Trucking Platform Creators',
+                'Laravel & React Engineers',
+                'Agile Capstone Team'
+            ];
+
+            const roles = (memberSlug && professionMap[memberSlug]) ? professionMap[memberSlug] : defaultRoles;
+            const prefix = memberName ? ('I’m <span class="tp-highlight-name">' + memberName + ',</span>') : 'We’re <span class="tp-highlight-name">Team Teampura,</span>';
+            const suffix = '<span class="tp-hero-origin-line" style="display:block; font-size:clamp(1.4rem, 2.6vw, 2.05rem); color:var(--tp-slate); font-weight:700; margin-top:2px;">From Opol Community College.</span>';
+
+            headline.innerHTML = prefix + '<span class="tp-typewriter-container"><span class="tp-typewriter-text"></span><span class="tp-typewriter-cursor">|</span></span>' + suffix;
+
+            const textEl = headline.querySelector('.tp-typewriter-text');
+            if (!textEl) return;
+
+            let roleIdx = 0;
+            let charIdx = 0;
+            let isDeleting = false;
+
+            function typeTick() {
+                const currentRole = roles[roleIdx];
+                if (isDeleting) {
+                    charIdx--;
+                    textEl.textContent = currentRole.substring(0, charIdx);
+                } else {
+                    charIdx++;
+                    textEl.textContent = currentRole.substring(0, charIdx);
+                }
+
+                let speed = isDeleting ? 38 : 70;
+
+                if (!isDeleting && charIdx === currentRole.length) {
+                    speed = 1900;
+                    isDeleting = true;
+                } else if (isDeleting && charIdx === 0) {
+                    isDeleting = false;
+                    roleIdx = (roleIdx + 1) % roles.length;
+                    speed = 450;
+                }
+
+                setTimeout(typeTick, speed);
+            }
+
+            typeTick();
+        }
+
+        // 5. Scroll-Reveal & Animated Counters
         function initAnimations() {
-            const revealTargets = document.querySelectorAll('#services-grid-row > .e-con-inner > .e-con, #team-grid-row > .e-con-inner > .e-con, #projects-grid-row > .e-con-inner > .e-con, #about-split-row > .e-con-inner > .e-con, #stats-grid-row > .e-con-inner > .e-con, #member-services-grid > .e-con-inner > .e-con, #member-projects-grid > .e-con-inner > .e-con, #member-deliverables-grid > .e-con-inner > .e-con, #member-certs-grid > .e-con-inner > .e-con, #member-cv-grid > .e-con-inner > .e-con, #member-details-row > .e-con-inner > .e-con, #member-education-grid > .e-con-inner > .e-con, #member-hobbies-grid > .e-con-inner > .e-con');
+            // A. Section-level smooth entrance transitions
+            const sectionSelectors = [
+                '#hero-section', '#member-hero-section',
+                '#services-section', '#member-services',
+                '#about-section', '#member-about',
+                '#stats-section', '#team-section',
+                '#projects-section', '#member-projects',
+                '#member-deliverables', '#member-education',
+                '#member-hobbies', '#member-skills',
+                '#member-certifications', '#member-cv-section',
+                '#faq-section', '#contact-section',
+                '#member-contact', '#member-switcher-section',
+                'footer'
+            ];
+
+            const sections = document.querySelectorAll(sectionSelectors.join(', '));
+            const cardTargets = document.querySelectorAll(
+                '#services-grid-row > .e-con-inner > .e-con, #team-grid-row > .e-con-inner > .e-con, #projects-grid-row > .e-con-inner > .e-con, #about-split-row > .e-con-inner > .e-con, #stats-grid-row > .e-con-inner > .e-con, #member-services-grid > .e-con-inner > .e-con, #member-projects-grid > .e-con-inner > .e-con, #member-deliverables-grid > .e-con-inner > .e-con, #member-certs-grid > .e-con-inner > .e-con, #member-cv-grid > .e-con-inner > .e-con, #member-details-row > .e-con-inner > .e-con, #member-education-grid > .e-con-inner > .e-con, #member-hobbies-grid > .e-con-inner > .e-con, #member-switcher-row > .e-con-inner > .e-con'
+            );
 
             if ('IntersectionObserver' in window) {
-                const obs = new IntersectionObserver(function (entries) {
+                // Section Observer
+                const sectionObs = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('tp-section-revealed');
+                            sectionObs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.04 });
+
+                sections.forEach(function (sec) {
+                    sec.classList.add('tp-section-reveal');
+                    sectionObs.observe(sec);
+                });
+
+                // Card Stagger Observer
+                const cardObs = new IntersectionObserver(function (entries) {
                     entries.forEach(function (entry) {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('tp-revealed');
-                            obs.unobserve(entry.target);
+                            cardObs.unobserve(entry.target);
                         }
                     });
                 }, { threshold: 0.08 });
 
-                revealTargets.forEach(function (el, idx) {
+                cardTargets.forEach(function (el, idx) {
                     el.classList.add('tp-reveal');
-                    el.style.transitionDelay = ((idx % 4) * 75) + 'ms';
-                    obs.observe(el);
+                    el.style.transitionDelay = ((idx % 4) * 85) + 'ms';
+                    cardObs.observe(el);
                 });
+            } else {
+                sections.forEach(function (sec) { sec.classList.add('tp-section-revealed'); });
+                cardTargets.forEach(function (el) { el.classList.add('tp-revealed'); });
             }
 
+            // Animated Counters
             document.querySelectorAll('.tp-count-num[data-target]').forEach(function (counter) {
                 const target = parseInt(counter.getAttribute('data-target'), 10);
                 const suffix = counter.getAttribute('data-suffix') || '';
@@ -264,6 +394,9 @@ add_action('wp_footer', function () {
                     }
                 }, 28);
             });
+
+            // Initialize Typewriter
+            initTypewriter();
         }
 
         if (document.readyState === 'loading') {

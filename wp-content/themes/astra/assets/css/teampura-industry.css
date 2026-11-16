@@ -80,20 +80,52 @@ h5.elementor-heading-title {
     50% { border-radius: 44% 56% 60% 40% / 48% 36% 64% 52%; }
 }
 
-.tp-reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+/* ==========================================================================
+   SMOOTH AMBIENT BACKGROUND & SECTION ENTRANCE TRANSITIONS
+   ========================================================================== */
+body,
+.site,
+#page {
+    background-color: #F8FAFC !important;
+    background-image: 
+        radial-gradient(at 8% 12%, rgba(30, 58, 138, 0.06) 0px, transparent 55%),
+        radial-gradient(at 92% 10%, rgba(249, 115, 22, 0.07) 0px, transparent 50%),
+        radial-gradient(at 50% 45%, rgba(241, 245, 249, 0.7) 0px, transparent 65%),
+        radial-gradient(at 85% 85%, rgba(30, 58, 138, 0.05) 0px, transparent 55%),
+        radial-gradient(at 12% 90%, rgba(249, 115, 22, 0.06) 0px, transparent 50%) !important;
+    background-attachment: fixed !important;
+    scroll-behavior: smooth !important;
 }
 
-.tp-reveal.tp-revealed {
+/* Enhanced Section Scroll-Reveal Animations */
+.tp-section-reveal {
+    opacity: 0;
+    transform: translateY(38px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.tp-section-reveal.tp-section-revealed {
     opacity: 1;
     transform: translateY(0);
 }
 
+.tp-reveal {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.tp-reveal.tp-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
 /* ==========================================================================
-   FLOATING PILL HEADER ("OLIVIA." STYLE) — NO GRAY BOXES, NO GIANT CIRCLE
+   FLOATING PILL HEADER WITH GLASS EFFECT & SCROLL SHRINKING ANIMATION
    ========================================================================== */
 #masthead.site-header {
     position: sticky;
@@ -102,6 +134,11 @@ h5.elementor-heading-title {
     padding: 14px 20px 8px !important;
     background: transparent !important;
     pointer-events: none;
+    transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#masthead.site-header.tp-header-scrolled {
+    padding: 6px 20px 4px !important;
 }
 
 #masthead .ast-main-header-wrap,
@@ -117,13 +154,36 @@ h5.elementor-heading-title {
     pointer-events: auto;
     max-width: 1220px !important;
     margin: 0 auto !important;
-    background: var(--tp-blue) !important;
+    background: rgba(30, 58, 138, 0.82) !important;
+    backdrop-filter: blur(18px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
     border-radius: 9999px !important;
-    padding: 6px 20px !important;
-    min-height: 62px !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    box-shadow: 0 14px 32px rgba(30, 58, 138, 0.24) !important;
+    padding: 7px 22px !important;
+    min-height: 60px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
     overflow: visible !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#masthead.site-header.tp-header-scrolled .main-header-bar {
+    background: rgba(15, 23, 42, 0.88) !important;
+    backdrop-filter: blur(22px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(200%) !important;
+    min-height: 48px !important;
+    padding: 4px 18px !important;
+    border-color: rgba(249, 115, 22, 0.4) !important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+    transform: scale(0.985);
+}
+
+#masthead.site-header.tp-header-scrolled .main-header-menu > .menu-item > .menu-link {
+    font-size: 13.5px !important;
+    padding: 6px 11px !important;
+}
+
+#masthead.site-header.tp-header-scrolled .site-title a {
+    font-size: 1.05rem !important;
 }
 
 #masthead .site-title {
@@ -401,6 +461,17 @@ h5.elementor-heading-title {
 }
 
 /* Framed "Hello There!" Badge with 4 corner squares */
+@keyframes tpFadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .tp-hello-frame {
     position: relative;
     display: inline-block;
@@ -412,6 +483,7 @@ h5.elementor-heading-title {
     font-weight: 700;
     color: var(--tp-charcoal);
     margin-bottom: 6px;
+    animation: tpFadeSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .tp-hello-frame span {
@@ -435,6 +507,7 @@ h5.elementor-heading-title {
     color: var(--tp-charcoal);
     letter-spacing: -0.03em;
     margin: 0;
+    animation: tpFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
 }
 
 .tp-highlight-name {
@@ -443,6 +516,51 @@ h5.elementor-heading-title {
     text-decoration: underline;
     text-decoration-thickness: 3px;
     text-underline-offset: 6px;
+    background: linear-gradient(135deg, #F97316 0%, #EA580C 25%, #FB923C 50%, #1E3A8A 80%, #F97316 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: tpGradientShimmer 5s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes tpGradientShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.tp-typewriter-container {
+    display: block;
+    color: var(--tp-blue);
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.75rem, 3.4vw, 2.65rem);
+    font-weight: 800;
+    line-height: 1.18;
+    min-height: 1.25em;
+    margin: 4px 0 2px;
+}
+
+.tp-typewriter-cursor {
+    display: inline-block;
+    color: var(--tp-coral);
+    font-weight: 700;
+    margin-left: 3px;
+    animation: tpBlinkCursor 0.85s infinite;
+}
+
+@keyframes tpBlinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes tpFloatImage {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-12px) rotate(0.8deg);
+    }
 }
 
 .tp-hero-subcopy {
@@ -451,6 +569,7 @@ h5.elementor-heading-title {
     line-height: 1.75;
     max-width: 540px;
     margin: 4px 0 8px;
+    animation: tpFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
 }
 
 /* Dual CTA Buttons matching Reference */
@@ -460,6 +579,7 @@ h5.elementor-heading-title {
     align-items: center;
     gap: 14px;
     margin-top: 6px;
+    animation: tpFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
 }
 
 .tp-btn-dual {
@@ -603,6 +723,7 @@ h5.elementor-heading-title {
     background: var(--tp-white) !important;
     margin: 0 auto !important;
     display: block !important;
+    animation: tpFloatImage 5s ease-in-out infinite !important;
 }
 
 /* Individual Member Hero Portrait */
@@ -620,6 +741,7 @@ h5.elementor-heading-title {
     background: var(--tp-white) !important;
     margin: 0 auto !important;
     display: block !important;
+    animation: tpFloatImage 4.5s ease-in-out infinite !important;
 }
 
 /* Anchor Elementor's text-editor overlay wrapper directly across the hero visual box */
@@ -1196,6 +1318,224 @@ a.elementor-button:hover {
     transform: translateY(-6px) !important;
     box-shadow: 0 16px 34px rgba(15, 23, 42, 0.1) !important;
     border-color: var(--tp-blue) !important;
+}
+
+/* ==========================================================================
+   STRICT VERTICAL BASELINE & CARD CONTENT ALIGNMENT FIX
+   ========================================================================== */
+#projects-grid-row > .e-con-inner > .e-con,
+#member-services-grid > .e-con-inner > .e-con,
+#member-projects-grid > .e-con-inner > .e-con,
+#member-deliverables-grid > .e-con-inner > .e-con,
+#member-certs-grid > .e-con-inner > .e-con,
+#member-education-grid > .e-con-inner > .e-con,
+#member-hobbies-grid > .e-con-inner > .e-con,
+#services-grid-row > .e-con-inner > .e-con {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+#projects-grid-row > .e-con-inner > .e-con > .e-con-inner,
+#member-services-grid > .e-con-inner > .e-con > .e-con-inner,
+#member-projects-grid > .e-con-inner > .e-con > .e-con-inner,
+#member-deliverables-grid > .e-con-inner > .e-con > .e-con-inner,
+#member-certs-grid > .e-con-inner > .e-con > .e-con-inner,
+#member-education-grid > .e-con-inner > .e-con > .e-con-inner,
+#member-hobbies-grid > .e-con-inner > .e-con > .e-con-inner,
+#services-grid-row > .e-con-inner > .e-con > .e-con-inner {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#projects-grid-row .elementor-widget-text-editor,
+#member-services-grid .elementor-widget-text-editor,
+#member-deliverables-grid .elementor-widget-text-editor,
+#member-certs-grid .elementor-widget-text-editor,
+#member-hobbies-grid .elementor-widget-text-editor,
+#member-education-grid .elementor-widget-text-editor,
+#services-grid-row .elementor-widget-text-editor {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#projects-grid-row .elementor-widget-container,
+#member-services-grid .elementor-widget-container,
+#member-deliverables-grid .elementor-widget-container,
+#member-certs-grid .elementor-widget-container,
+#member-hobbies-grid .elementor-widget-container,
+#member-education-grid .elementor-widget-container,
+#services-grid-row .elementor-widget-container {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#projects-grid-row .elementor-widget-container > div,
+#member-services-grid .elementor-widget-container > div,
+#member-deliverables-grid .elementor-widget-container > div,
+#member-certs-grid .elementor-widget-container > div,
+#member-hobbies-grid .elementor-widget-container > div,
+#member-education-grid .elementor-widget-container > div,
+#services-grid-row .elementor-widget-container > div {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* 1. Deliverables Grid Alignment: Equal Title, Description & Code Box */
+#member-deliverables-grid h3 {
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    margin: 4px 0 6px !important;
+    min-height: 56px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+#member-deliverables-grid p:not(.tp-timeline-desc) {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+    color: var(--tp-muted) !important;
+    margin: 0 0 10px !important;
+    min-height: 62px !important;
+}
+
+#member-deliverables-grid .tp-code-preview-box {
+    min-height: 175px !important;
+    height: 175px !important;
+    margin: 4px 0 12px !important;
+    overflow-y: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+}
+
+#member-deliverables-grid .tp-check-list {
+    margin-top: auto !important;
+    padding-top: 10px !important;
+    border-top: 1px dashed var(--tp-border) !important;
+}
+
+/* 2. Services Grid Alignment: Equal Title, Description & Bottom Checklist */
+#services-grid-row h3,
+#member-services-grid h3 {
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    min-height: 52px !important;
+    margin: 2px 0 6px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+#services-grid-row p,
+#member-services-grid p {
+    font-size: 13.5px !important;
+    line-height: 1.55 !important;
+    min-height: 66px !important;
+    margin: 0 0 10px !important;
+}
+
+#services-grid-row .tp-check-list,
+#member-services-grid .tp-check-list {
+    margin-top: auto !important;
+    padding-top: 12px !important;
+    border-top: 1px dashed var(--tp-border) !important;
+}
+
+/* 3. Hobbies Grid Alignment */
+#member-hobbies-grid h4 {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    min-height: 48px !important;
+    margin: 2px 0 8px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+#member-hobbies-grid p {
+    font-size: 13.3px !important;
+    line-height: 1.55 !important;
+    min-height: 68px !important;
+    margin: 0 !important;
+}
+
+/* 4. Education Grid Alignment */
+#member-education-grid .elementor-widget-text-editor,
+#member-education-grid .elementor-widget-text-editor .elementor-widget-container,
+#member-education-grid .elementor-widget-text-editor .elementor-widget-container > div {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+#member-education-grid .elementor-widget-text-editor .elementor-widget-container > div > div:first-child {
+    min-height: 28px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: 8px !important;
+}
+
+#member-education-grid h4 {
+    font-size: 1.02rem !important;
+    font-weight: 700 !important;
+    min-height: 48px !important;
+    margin: 0 0 8px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+#member-education-grid p {
+    font-size: 12.8px !important;
+    min-height: 38px !important;
+    margin-top: auto !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+}
+
+/* 5. Projects Grid Alignment (Home & Member) */
+#projects-grid-row h3,
+#member-projects-grid h3,
+.tp-project-card-inner h3 {
+    font-size: 1.12rem !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    min-height: 52px !important;
+    margin: 4px 0 6px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+#projects-grid-row p,
+#member-projects-grid p,
+.tp-project-card-inner p {
+    font-size: 13.2px !important;
+    line-height: 1.55 !important;
+    min-height: 64px !important;
+    margin: 0 0 10px !important;
+    color: var(--tp-muted) !important;
+}
+
+#projects-grid-row .tp-check-list,
+#member-projects-grid .tp-check-list {
+    margin-top: auto !important;
+}
+
+#projects-grid-row .tp-project-visit-btn,
+#member-projects-grid .tp-project-visit-btn {
+    margin-top: auto !important;
 }
 
 /* Sample Deliverables Code / Blueprint Preview Box */
