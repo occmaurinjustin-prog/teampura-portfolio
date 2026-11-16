@@ -1,0 +1,13 @@
+# WordPress sensitive config (keep wp-config-sample.php tracked)
+wp-config.php
+
+# Archive / OS / Log artifacts
+PaxHeaders/
+**/PaxHeaders/
+.DS_Store
+Thumbs.db
+*.log
+wp-content/debug.log
+
+# Temporary Elementor cache files (regenerated automatically)
+wp-content/uploads/elementor/css/*.css
