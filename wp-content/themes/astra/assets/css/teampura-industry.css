@@ -976,22 +976,41 @@ a.elementor-button:hover {
 }
 
 #member-education-grid .elementor-widget-image {
-    margin-bottom: 10px !important;
+    background: #F8FAFC !important;
+    border: 1px solid var(--tp-border) !important;
+    border-radius: 14px !important;
+    padding: 10px !important;
+    height: 155px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 12px !important;
+    overflow: hidden !important;
+}
+
+#member-education-grid .elementor-widget-image .elementor-widget-container {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 #member-education-grid .elementor-widget-image img {
     width: 100% !important;
-    height: 155px !important;
-    object-fit: cover !important;
-    border-radius: 12px !important;
-    border: 2px solid var(--tp-border) !important;
-    margin-bottom: 10px !important;
+    height: 100% !important;
+    max-height: 135px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin: 0 auto !important;
     display: block !important;
     transition: transform 0.3s ease !important;
 }
 
 #member-education-grid > .e-con-inner > .e-con:hover .elementor-widget-image img {
-    transform: scale(1.03);
+    transform: scale(1.06);
 }
 
 #stats-grid-row > .e-con-inner > .e-con {
