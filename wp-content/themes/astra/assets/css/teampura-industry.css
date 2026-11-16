@@ -317,7 +317,9 @@ h5.elementor-heading-title {
 #team-section,
 #projects-section,
 #member-services,
-#member-projects {
+#member-projects,
+#member-deliverables,
+#member-cv-section {
     background-color: var(--tp-white) !important;
     padding: 76px 20px !important;
 }
@@ -327,14 +329,21 @@ h5.elementor-heading-title {
 #contact-section,
 #member-about,
 #member-skills,
+#member-certifications,
 #member-contact,
 #member-switcher-section {
     background-color: var(--tp-grey) !important;
     padding: 76px 20px !important;
 }
 
-#member-skills {
+#member-skills,
+#member-deliverables,
+#member-cv-section {
     background-color: var(--tp-white) !important;
+}
+
+#member-certifications {
+    background-color: var(--tp-grey) !important;
 }
 
 #team-section > .e-con-inner,
@@ -344,6 +353,9 @@ h5.elementor-heading-title {
 #contact-section > .e-con-inner,
 #member-services > .e-con-inner,
 #member-projects > .e-con-inner,
+#member-deliverables > .e-con-inner,
+#member-certifications > .e-con-inner,
+#member-cv-section > .e-con-inner,
 #member-contact > .e-con-inner,
 #member-switcher-section > .e-con-inner {
     display: flex !important;
@@ -1084,7 +1096,9 @@ a.elementor-button:hover {
    ========================================================================== */
 #projects-grid-row,
 #member-services-grid,
-#member-projects-grid {
+#member-projects-grid,
+#member-deliverables-grid,
+#member-certs-grid {
     width: 100% !important;
     max-width: 1200px !important;
     margin: 24px auto 0 !important;
@@ -1092,7 +1106,9 @@ a.elementor-button:hover {
 
 #projects-grid-row > .e-con-inner,
 #member-services-grid > .e-con-inner,
-#member-projects-grid > .e-con-inner {
+#member-projects-grid > .e-con-inner,
+#member-deliverables-grid > .e-con-inner,
+#member-certs-grid > .e-con-inner {
     display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 24px !important;
@@ -1104,7 +1120,9 @@ a.elementor-button:hover {
 
 #projects-grid-row > .e-con-inner > .e-con,
 #member-services-grid > .e-con-inner > .e-con,
-#member-projects-grid > .e-con-inner > .e-con {
+#member-projects-grid > .e-con-inner > .e-con,
+#member-deliverables-grid > .e-con-inner > .e-con,
+#member-certs-grid > .e-con-inner > .e-con {
     width: 100% !important;
     max-width: 100% !important;
     background: var(--tp-white) !important;
@@ -1117,10 +1135,110 @@ a.elementor-button:hover {
 
 #projects-grid-row > .e-con-inner > .e-con:hover,
 #member-services-grid > .e-con-inner > .e-con:hover,
-#member-projects-grid > .e-con-inner > .e-con:hover {
+#member-projects-grid > .e-con-inner > .e-con:hover,
+#member-deliverables-grid > .e-con-inner > .e-con:hover,
+#member-certs-grid > .e-con-inner > .e-con:hover {
     transform: translateY(-6px) !important;
     box-shadow: 0 16px 34px rgba(15, 23, 42, 0.1) !important;
     border-color: var(--tp-blue) !important;
+}
+
+/* Sample Deliverables Code / Blueprint Preview Box */
+.tp-code-preview-box {
+    background: #0F172A;
+    color: #E2E8F0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.55;
+    text-align: left;
+    border-left: 4px solid var(--tp-coral);
+    overflow-x: auto;
+}
+
+.tp-code-preview-box .tp-code-title {
+    color: #FB923C;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* Certifications Card */
+.tp-cert-badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.tp-cert-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--tp-blue), var(--tp-blue-dark));
+    color: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+/* Printable 1-Page Digital Resume Card */
+.tp-printable-cv {
+    text-align: left;
+    background: #FFFFFF;
+    border: 2px solid var(--tp-blue);
+    border-radius: 16px;
+    padding: 24px 22px;
+    box-shadow: 0 12px 28px rgba(30, 58, 138, 0.08);
+}
+
+.tp-cv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--tp-coral);
+    margin-bottom: 14px;
+}
+
+.tp-cv-section-title {
+    font-size: 11.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--tp-blue);
+    margin: 12px 0 6px;
+}
+
+.tp-print-btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--tp-coral), var(--tp-coral-dark));
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 14.5px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 8px 20px rgba(249, 115, 22, 0.28);
+    transition: all 0.25s ease;
+}
+
+.tp-print-btn:hover {
+    background: linear-gradient(135deg, var(--tp-blue), var(--tp-blue-dark));
+    transform: translateY(-2px);
 }
 
 #projects-grid-row > .e-con-inner > .e-con > .e-con-inner,
@@ -1223,7 +1341,8 @@ a.elementor-button:hover {
 #faq-grid-row,
 #contact-grid-row,
 #member-about-grid,
-#member-details-row {
+#member-details-row,
+#member-cv-grid {
     width: 100% !important;
     max-width: 1200px !important;
     margin: 22px auto 0 !important;
@@ -1233,7 +1352,8 @@ a.elementor-button:hover {
 #faq-grid-row > .e-con-inner,
 #contact-grid-row > .e-con-inner,
 #member-about-grid > .e-con-inner,
-#member-details-row > .e-con-inner {
+#member-details-row > .e-con-inner,
+#member-cv-grid > .e-con-inner {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 28px !important;
@@ -1247,7 +1367,8 @@ a.elementor-button:hover {
 #faq-grid-row > .e-con-inner > .e-con,
 #contact-grid-row > .e-con-inner > .e-con,
 #member-about-grid > .e-con-inner > .e-con,
-#member-details-row > .e-con-inner > .e-con {
+#member-details-row > .e-con-inner > .e-con,
+#member-cv-grid > .e-con-inner > .e-con {
     width: 100% !important;
     max-width: 100% !important;
     background: var(--tp-white) !important;
@@ -1471,6 +1592,8 @@ details.tp-accordion p {
     #projects-grid-row > .e-con-inner,
     #member-services-grid > .e-con-inner,
     #member-projects-grid > .e-con-inner,
+    #member-deliverables-grid > .e-con-inner,
+    #member-certs-grid > .e-con-inner,
     #member-switcher-row > .e-con-inner {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
@@ -1478,7 +1601,8 @@ details.tp-accordion p {
     #faq-grid-row > .e-con-inner,
     #contact-grid-row > .e-con-inner,
     #member-about-grid > .e-con-inner,
-    #member-details-row > .e-con-inner {
+    #member-details-row > .e-con-inner,
+    #member-cv-grid > .e-con-inner {
         grid-template-columns: 1fr !important;
     }
 }
@@ -1497,6 +1621,8 @@ details.tp-accordion p {
     #projects-grid-row > .e-con-inner,
     #member-services-grid > .e-con-inner,
     #member-projects-grid > .e-con-inner,
+    #member-deliverables-grid > .e-con-inner,
+    #member-certs-grid > .e-con-inner,
     #member-switcher-row > .e-con-inner {
         grid-template-columns: 1fr !important;
     }
@@ -1524,5 +1650,47 @@ details.tp-accordion p {
     #hero-visual-col img {
         height: 260px !important;
         max-width: 100% !important;
+    }
+}
+
+/* ==========================================================================
+   CLEAN 1-PAGE PRINTABLE CV / RESUME STYLES
+   ========================================================================== */
+@media print {
+    #masthead,
+    footer,
+    #wpadminbar,
+    .tp-marquee-wrap,
+    #member-hero-section,
+    #member-services,
+    #member-about,
+    #member-skills,
+    #member-projects,
+    #member-deliverables,
+    #member-certifications,
+    #member-contact,
+    #member-switcher-section,
+    #member-cv-section > .e-con-inner > .elementor-widget-text-editor,
+    #member-cv-section > .e-con-inner > .elementor-widget-heading,
+    #member-cv-grid > .e-con-inner > .e-con:first-child,
+    .tp-print-btn {
+        display: none !important;
+    }
+    #member-cv-section,
+    #member-cv-grid,
+    #member-cv-grid > .e-con-inner,
+    #member-cv-grid > .e-con-inner > .e-con:last-child {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    .tp-printable-cv {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
     }
 }

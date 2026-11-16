@@ -229,7 +229,7 @@ add_action('wp_footer', function () {
 
         // 3. Scroll-Reveal & Animated Counters
         function initAnimations() {
-            const revealTargets = document.querySelectorAll('#services-grid-row > .e-con-inner > .e-con, #team-grid-row > .e-con-inner > .e-con, #projects-grid-row > .e-con-inner > .e-con, #about-split-row > .e-con-inner > .e-con, #stats-grid-row > .e-con-inner > .e-con, #member-services-grid > .e-con-inner > .e-con, #member-projects-grid > .e-con-inner > .e-con, #member-details-row > .e-con-inner > .e-con');
+            const revealTargets = document.querySelectorAll('#services-grid-row > .e-con-inner > .e-con, #team-grid-row > .e-con-inner > .e-con, #projects-grid-row > .e-con-inner > .e-con, #about-split-row > .e-con-inner > .e-con, #stats-grid-row > .e-con-inner > .e-con, #member-services-grid > .e-con-inner > .e-con, #member-projects-grid > .e-con-inner > .e-con, #member-deliverables-grid > .e-con-inner > .e-con, #member-certs-grid > .e-con-inner > .e-con, #member-cv-grid > .e-con-inner > .e-con, #member-details-row > .e-con-inner > .e-con');
 
             if ('IntersectionObserver' in window) {
                 const obs = new IntersectionObserver(function (entries) {
